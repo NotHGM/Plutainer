@@ -76,6 +76,36 @@ docker compose up -d
 
 Your server will start, automatically update its files, and become available for players to join!
 
+## 👤 User and File Permissions
+
+For enhanced security, Plutainer does not run as the `root` user. Instead, it uses a dedicated, unprivileged user named `plutouser`.
+
+*   **User:** `plutouser`
+*   **User ID (UID):** `1000`
+*   **Group ID (GID):** `1000`
+
+### Why This Matters
+
+When you mount volumes from your host machine into the container, the `plutouser` (with UID `1000`) needs to have the appropriate permissions to read and write to those directories. If the ownership on your host directories is incorrect, the server may fail to start or be unable to save data.
+
+On many desktop Linux distributions (like Ubuntu), the first user you create is automatically assigned UID `1000`. If you are that user, you may not need to do anything. However, if you created the directories as `root` (e.g., using `sudo mkdir`), you will need to update their ownership.
+
+### How to Fix Permissions
+
+To ensure the container has the correct access, you should change the ownership of your persistent data directory to match the container's user. Run the following command on your host machine, adjusting the path to match your setup:
+
+```sh
+sudo chown -R 1000:1000 /path/to/your/server-data/
+```
+
+For example, using the directory structure from our guide:
+
+```sh
+sudo chown -R 1000:1000 /opt/pluto-servers/t6zm-server-1/
+```
+
+The `-R` flag applies the ownership recursively, ensuring all files and sub-folders have the correct permissions. While the container only needs to *read* the game files, applying correct ownership to that volume as well is good practice to avoid any potential read-related issues.
+
 ## ⚙️ Configuration
 
 Plutainer is configured entirely through environment variables.
