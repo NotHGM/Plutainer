@@ -32,8 +32,8 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}/plutainer
           tags: |
-            # tag for pushes to main branch
-            type=branch,event=push,pattern=latest
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
             # tag for releases
             type=ref,event=tag
             # tag for pull requests
@@ -48,3 +48,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
