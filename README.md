@@ -1,9 +1,3 @@
-Of course. A good README is essential for any project. This one is designed to be high-level and guide users directly to a working Docker Compose setup, with clear explanations for the volumes and essential environment variables.
-
-Here is the `README.md` for your GitHub project.
-
----
-
 # Plutainer 🚀
 
 **Plutonium Game Servers in a Docker Container**
