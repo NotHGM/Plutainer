@@ -64,6 +64,8 @@ services:
       - PLUTO_SERVER_NAME=My Awesome T6 Zombies Server!
 ```
 
+For a complete example of each server and IW4MAdmin, please see: [EXAMPLE-docker-compose.yml](EXAMPLE-docker-compose.yml)
+
 ### 3. Launch the Server
 
 Place your server configuration file (e.g., `dedicated_zm.cfg`) inside the correct sub-directory within your persistent data volume (see [Game-Specific Configuration](#-game-specific-configuration) for paths). Then, start the container:
