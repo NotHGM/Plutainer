@@ -58,7 +58,7 @@ case "${BASE_GAME}" in
     CONFIG_PATH="/home/plutouser/gamefiles/admin/${PLUTO_CONFIG_FILE}"
     ;;
   *)
-    CONFIG_PATH="/home/plutonium/storage/${BASE_GAME}/${PLUTO_CONFIG_FILE}"
+    CONFIG_PATH="/home/plutouser/plutonium/storage/${BASE_GAME}/${PLUTO_CONFIG_FILE}"
     ;;
 esac
 echo "       - Expecting config file at: ${CONFIG_PATH}"
