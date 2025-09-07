@@ -22,8 +22,12 @@ echo "Brought to you by Ayymoss"
 echo
 
 # --- Step 1: Update Plutonium Files ---
-echo "Checking for Plutonium updates... This may take a few minutes on first run."
-/home/plutouser/plutonium-updater --no-color
+if [[ -z "${PLUTO_AUTO_UPDATE}" || "${PLUTO_AUTO_UPDATE}" == "true" ]]; then
+  echo "Checking for Plutonium updates... This may take a few minutes on first run."
+  /home/plutouser/plutonium-updater --no-color
+else
+  echo "Skipping Plutonium updates because PLUTO_AUTO_UPDATE is not 'true' or is unset."
+fi
 
 cd /home/plutouser/plutonium
 
