@@ -59,6 +59,7 @@ services:
       - PLUTO_SERVER_KEY=YOUR_SUPER_SECRET_KEY
       - PLUTO_CONFIG_FILE=dedicated_zm.cfg
       - PLUTO_GAME=t6zm
+      - PLUTO_PORT=4976
 
       # --- Optional Variables ---
       - PLUTO_SERVER_NAME=My Awesome T6 Zombies Server!
@@ -118,15 +119,16 @@ Plutainer is configured entirely through environment variables.
 | `PLUTO_CONFIG_FILE` | The name of your server's `.cfg` file. Its required location depends on the game. | `dedicated.cfg` |
 | `PLUTO_GAME` | The game mode to launch. See the list of supported games below. | `t6zm` |
 | `PLUTO_MAX_CLIENTS` | **Required for T5 (Black Ops 1) only.** The max players. For T5 Zombies, this is `4`; for MP, it can be up to `18`. | `18` |
+| `PLUTO_PORT` | Overrides the default game port. | (Game-specific default) |
 
 ### Optional Variables
 
 | Variable | Description | Default |
 | :--- | :--- | :--- |
 | `PLUTO_SERVER_NAME` | A friendly name for your server. | `Plutonium Docker Server` |
-| `PLUTO_PORT` | Overrides the default game port. **Not recommended**; use Docker's `ports` mapping instead. | (Game-specific default) |
 | `PLUTO_MOD` | Loads a mod by setting the `fs_game` variable for the server. | (Not set) |
 | `PLUTO_HEALTHCHECK` | Set to `false` to disable the Docker health check. Useful for debugging. | `true` |
+| `PLUTO_AUTO_UPDATE` | Set to `false` to disable auto-updating. Useful if you have scripts that may break. | `true` |
 
 ## 🎮 Supported Games & Defaults
 
