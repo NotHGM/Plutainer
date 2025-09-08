@@ -22,11 +22,17 @@ echo "Brought to you by Ayymoss"
 echo
 
 # --- Step 1: Update Plutonium Files ---
-if [[ -z "${PLUTO_AUTO_UPDATE}" || "${PLUTO_AUTO_UPDATE}" == "true" ]]; then
-  echo "Checking for Plutonium updates... This may take a few minutes on first run."
-  /home/plutouser/plutonium-updater --no-color
+PLUTO_CDN_INFO_LOC="/home/plutouser/plutonium/cdn_info.json"
+if [[ ! -f "${PLUTO_CDN_INFO_LOC}" ]]; then
+  echo "First container run detected. Downloading Plutonium initial files... This may take a few minutes."
+  /home/plutouser/plutonium-updater
 else
-  echo "Skipping Plutonium updates because PLUTO_AUTO_UPDATE is not 'true' or is unset."
+  if [[ "${PLUTO_AUTO_UPDATE}" == "false" ]]; then
+    echo "Skipping Plutonium update because PLUTO_AUTO_UPDATE is set to 'false'."
+  else
+    echo "Checking for Plutonium updates... This may take a few minutes if an update is available."
+    /home/plutouser/plutonium-updater
+  fi
 fi
 
 cd /home/plutouser/plutonium
