@@ -22,6 +22,7 @@ echo
 if [[ -n "${PLUTO_GAME}" ]]; then
   echo "Plutonium game type detected. Handing off to Plutonium entrypoint..."
   exec /home/plutainer/.plutainer/plutoentry.sh
+  sleep 600
 elif [[ -n "${IW4X_GAME}" ]]; then
   echo "IW4x game type detected. Handing off to IW4x entrypoint..."
   exec /home/plutainer/.plutainer/iw4xentry.sh
