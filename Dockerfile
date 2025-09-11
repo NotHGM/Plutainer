@@ -29,18 +29,22 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user for running the server
-RUN useradd -m plutouser
-USER plutouser
-WORKDIR /home/plutouser
+RUN useradd -m plutainer
+USER plutainer
+WORKDIR /home/plutainer/.plutainer
 
-# Download and extract the Plutonium updater
+# Download and extract the updaters
 RUN wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz -O plutonium-updater.tar.gz && \
     tar -xzvf plutonium-updater.tar.gz && \
     rm plutonium-updater.tar.gz
 
+RUN wget https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher-x86_64-unknown-linux-gnu.tar.gz -O iw4x-updater.tar.gz && \
+    tar -xzvf iw4x-updater.tar.gz && \
+    rm iw4x-updater.tar.gz
+
 # Copy all necessary scripts and the python module into the image
-COPY --chown=plutouser:plutouser entrypoint.sh healthcheck.sh pyquake3.py .
-RUN chmod +x entrypoint.sh healthcheck.sh
+COPY --chown=plutainer:plutainer entrypoint.sh plutoentry.sh iw4xentry.sh healthcheck.sh pyquake3.py .
+RUN chmod +x entrypoint.sh healthcheck.sh plutoentry.sh iw4xentry.sh
 
 # Set the stop signal to SIGKILL to force termination
 STOPSIGNAL SIGKILL
