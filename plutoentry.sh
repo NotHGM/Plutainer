@@ -18,7 +18,7 @@ case "$BASE_GAME" in
   t4)
     echo "Linking files for t4 (World at War)..."
     ln -sf "$SOURCE_DIR"/{zone,binkw32.dll,localization.txt,cod.bmp,codlogo.bmp} "$DEST_DIR"/
-	mkdir -p "$DEST_DIR/main"
+    mkdir -p "$DEST_DIR/main"
     ln -sf "$SOURCE_DIR"/main/{iw_00.iwd,iw_14.iwd,iw_21.iwd,iw_22.iwd,iw_24.iwd,iw_26.iwd,localized_english_iw00.iwd,localized_english_iw04.iwd} "$DEST_DIR"/main/
     ;;
   t5)
