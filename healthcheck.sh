@@ -86,7 +86,7 @@ case "${GAME_TYPE}" in
     esac
     ;;
   "iw4x")
-    CONFIG_PATH="/home/plutainer/app/userraw/${CONFIG_FILE}"
+    CONFIG_PATH="/home/plutainer/app/gamefiles/userraw/${CONFIG_FILE}"
     ;;
 esac
 echo "       - Expecting config file at: ${CONFIG_PATH}"
