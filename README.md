@@ -158,3 +158,10 @@ Discord Support: https://discord.gg/PjrFw4tNES
 Please note that I will not be supporting Plutonium-specific issues. There is an expectation that you're already familiar with Docker. If you're brand new, please visit https://docs.docker.com/get-started/
 
 This Discord is to be specific to Plutainer and its setup and configuration (including IW4MAdmin).
+
+***
+
+#### Credits
+
+- Corey, for a production testing ground @ https://cukservers.net/
+- HGM, for the name 'Plutainer' @ https://hgmserve.rs/
