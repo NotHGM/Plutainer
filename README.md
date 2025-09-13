@@ -74,10 +74,10 @@ To persist your server configurations and provide the necessary game files, you 
 * **Game Files:** You need to mount your host machine's game files directory into the container at `/home/plutainer/gamefiles`. It is highly recommended to mount this as read-only (`:ro`) to prevent the container from modifying your base game files.
 * **Config Files:** Your server's `.cfg` files should be included in the default expected locations for the games. Mount `/home/plutainer/app`. The expected relative game config defaults are...
   * **IW4x:** `./gamefiles/userraw/`
-  * **Plutonium T4 (WaW):** `./gamefiles/main/`.
-  * **Plutonium T5 (BO1):** `./plutonium/storage/t5/`.
-  * **Plutonium IW5 (MW3):** `./gamefiles/admin/`.
-  * **Plutonium T6 (BO2):** `./plutonium/storage/t6/`.
+  * **Plutonium T4 (WaW):** `./gamefiles/main/`
+  * **Plutonium T5 (BO1):** `./plutonium/storage/t5/`
+  * **Plutonium IW5 (MW3):** `./gamefiles/admin/`
+  * **Plutonium T6 (BO2):** `./plutonium/storage/t6/`
 
 ***
 
