@@ -15,7 +15,7 @@ The primary goal of this Docker image is to simplify the setup and management of
   * IW5 (Call of Duty: Modern Warfare 3) - `iw5mp`
 * **IW4x:** (Call of Duty: Modern Warfare 2) - `iw4x`
 
-The container handles the installation and updates of Wine, Plutonium, and IW4x launchers, and sets up a non-root user for enhanced security. It determines which game server to run based on the environment variables provided.
+The container includes the installation of Wine, Plutonium, and IW4x launchers, and sets up a non-root user for enhanced security.
 
 ## Prerequisites
 
@@ -39,6 +39,8 @@ The container is configured entirely through environment variables. You must spe
 | --- | --- | --- |
 | `PLUTO_GAME` | The Plutonium game to run. **Required** for Plutonium. | |
 | `IW4X_GAME` | The IW4x game to run. Must be `iw4x`. **Required** for IW4x. | |
+
+See above for the game tags to use. (eg, `t6zm`)
 
 #### Plutonium Variables
 
