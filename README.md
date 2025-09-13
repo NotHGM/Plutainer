@@ -147,7 +147,9 @@ The container includes a robust health check script that verifies the server is 
 
 The health check is enabled by default. You can disable it by setting the corresponding environment variable (`PLUTO_HEALTHCHECK` or `IW4X_HEALTHCHECK`) to `"false"`. This can be useful for debugging or if you do not wish to set an RCON password.
 
-Please note for the healthcheck to work correctly, games that support RCon whitelists need to have localhost permitted and/or "127.0.0.1"
+Please note that for the healthcheck to work correctly, games that support RCon whitelists need to have localhost permitted and/or "127.0.0.1"
+
+To have your servers restarted automatically, simply add [Auto Heal](https://github.com/willfarrell/docker-autoheal) to the compose.
 
 ***
 
