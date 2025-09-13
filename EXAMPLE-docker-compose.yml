@@ -123,6 +123,7 @@ services:
       - PLUTO_SERVER_KEY=${T5SP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=dedicated_sp.cfg
       - PLUTO_GAME=t5sp
+      - PLUTO_MOD=mods/Stairway_to_hell_bo1
       - PLUTO_MAX_CLIENTS=4
     networks:
       - games-net
@@ -162,12 +163,12 @@ services:
       - ./IW4MAdmin/Localization:/app/Localization
       - ./IW4MAdmin/Database:/app/Database
       - ./IW4MAdmin/Log:/app/Log
-      - ./iw4xmp-1/gamefiles/userraw/logs/games_dom.log:/app/gamelogs/iw4xmp-1/gamefiles/userraw/logs/games_mp.log:ro
+      - ./iw4xmp-1/gamefiles/userraw/logs/games_mp.log:/app/gamelogs/iw4xmp-1/gamefiles/userraw/logs/games_mp.log:ro
       - ./iw5mp-1/plutonium/storage/iw5/logs/games_mp.log:/app/gamelogs/iw5mp-1/plutonium/storage/iw5/logs/games_mp.log:ro
       - ./t4mp-1/plutonium/storage/t4/main/games_mp.log:/app/gamelogs/t4mp-1/plutonium/storage/t4/main/games_mp.log:ro
       - ./t4sp-1/plutonium/storage/t4/main/games_zm.log:/app/gamelogs/t4sp-1/plutonium/storage/t4/main/games_zm.log:ro
       - ./t5mp-1/plutonium/storage/t5/main/logs/games_mp.log:/app/gamelogs/t5mp-1/plutonium/storage/t5/main/logs/games_mp.log:ro
-      - ./t5sp-1/plutonium/storage/t5/main/logs/games_sp.log:/app/gamelogs/t5sp-1/plutonium/storage/t5/main/logs/games_sp.log:ro
+      - ./t5sp-1/plutonium/storage/t5/mods/Stairway_to_hell_bo1/logs/games_zm.log:/app/gamelogs/t5sp-1/plutonium/storage/t5/mods/Stairway_to_hell_bo1/logs/games_zm.log:ro
       - ./t6mp-1/plutonium/storage/t6/main/logs/games_mp.log:/app/gamelogs/t6mp-1/plutonium/storage/t6/main/logs/games_mp.log:ro
       - ./t6zm-1/plutonium/storage/t6/main/logs/games_zm.log:/app/gamelogs/t6zm-1/plutonium/storage/t6/main/logs/games_zm.log:ro
     depends_on:
