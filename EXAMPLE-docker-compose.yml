@@ -1,4 +1,22 @@
 services:
+  iw4xmp-1:
+    image: ghcr.io/ayymoss/plutainer:latest
+    container_name: iw4xmp-1
+    restart: unless-stopped
+    ports:
+      - "28970:28970/udp"
+      #- "28970:28970/tcp" # TCP is needed for modlist metadata (not required if not hosting mods)
+    volumes:
+      - /opt/GameFiles/IW4xServerFiles:/home/plutainer/gamefiles
+      - ./iw4xmp-1:/home/plutainer/app
+    environment:
+      - IW4X_PORT=28970
+      - IW4X_CONFIG_FILE=server.cfg
+      - IW4X_GAME=iw4x
+      - IW4X_AUTO_UPDATE=false
+    networks:
+      - games-net
+
   t6zm-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: t6zm-1
@@ -7,14 +25,15 @@ services:
     ports:
       - "4976:4976/udp"
     volumes:
-      - /opt/ServerFiles/T6ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t6zm-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T6ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t6zm-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=4976
+      - PLUTO_SERVER_KEY=${T6ZM_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=dedicated_zm.cfg
       - PLUTO_GAME=t6zm
     networks:
-      - pluto-net
+      - games-net
 
   t6mp-1:
     image: ghcr.io/ayymoss/plutainer:latest
@@ -22,17 +41,18 @@ services:
     hostname: t6mp-1
     restart: unless-stopped
     ports:
-      - "4977:4976/udp"
+      - "4977:4977/udp"
     volumes:
-      - /opt/ServerFiles/T6ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t6mp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T6ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t6mp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=4977
+      - PLUTO_SERVER_KEY=${T6MP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=dedicated.cfg
       - PLUTO_GAME=t6mp
     networks:
-      - pluto-net
-
+      - games-net
+  
   t4sp-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: t4sp-1
@@ -41,68 +61,72 @@ services:
     ports:
       - "28960:28960/udp"
     volumes:
-      - /opt/ServerFiles/T4ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t4sp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T4ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t4sp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=28960
+      - PLUTO_SERVER_KEY=${T4SP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=server_zm.cfg
       - PLUTO_GAME=t4sp
     networks:
-      - pluto-net
-
+      - games-net
+  
   t4mp-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: t4mp-1
     hostname: t4mp-1
     restart: unless-stopped
     ports:
-      - "28961:28960/udp"
+      - "28961:28961/udp"
     volumes:
-      - /opt/ServerFiles/T4ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t4mp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T4ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t4mp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=28961
+      - PLUTO_SERVER_KEY=${T4MP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=server.cfg
       - PLUTO_GAME=t4mp
     networks:
-      - pluto-net
-
+      - games-net
+  
   t5mp-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: t5mp-1
     hostname: t5mp-1
     restart: unless-stopped
     ports:
-      - "28962:28960/udp"
+      - "28962:28962/udp"
     volumes:
-      - /opt/ServerFiles/T5ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t5mp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T5ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t5mp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=28962
+      - PLUTO_SERVER_KEY=${T5MP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=dedicated.cfg
       - PLUTO_GAME=t5mp
       - PLUTO_MAX_CLIENTS=18
     networks:
-      - pluto-net
-
+      - games-net
+  
   t5sp-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: t5sp-1
     hostname: t5sp-1
     restart: unless-stopped
     ports:
-      - "28963:28960/udp"
+      - "28963:28963/udp"
     volumes:
-      - /opt/ServerFiles/T5ServerFiles:/home/plutouser/gamefiles:ro
-      - ./t5sp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/T5ServerFiles:/home/plutainer/gamefiles:ro
+      - ./t5sp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=28963
+      - PLUTO_SERVER_KEY=${T5SP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=dedicated_sp.cfg
       - PLUTO_GAME=t5sp
       - PLUTO_MAX_CLIENTS=4
     networks:
-      - pluto-net
-
+      - games-net
+  
   iw5mp-1:
     image: ghcr.io/ayymoss/plutainer:latest
     container_name: iw5mp-1
@@ -111,21 +135,23 @@ services:
     ports:
       - "27016:27016/udp"
     volumes:
-      - /opt/ServerFiles/IW5ServerFiles:/home/plutouser/gamefiles:ro
-      - ./iw5mp-1:/home/plutouser/plutonium
+      - /opt/GameFiles/IW5ServerFiles:/home/plutainer/gamefiles:ro
+      - ./iw5mp-1:/home/plutainer/app
     environment:
-      - PLUTO_SERVER_KEY=${PLUTO_SERVER_KEY}
+      - PLUTO_PORT=27016
+      - PLUTO_SERVER_KEY=${IW5MP_PLUTO_SERVER_KEY}
       - PLUTO_CONFIG_FILE=server.cfg
       - PLUTO_GAME=iw5mp
     networks:
-      - pluto-net
-
+      - games-net
+  
   iw4madmin:
     image: ghcr.io/raidmax/iw4madmin:latest
     container_name: iw4madmin
     restart: unless-stopped
     ports:
       - "1624:1624"
+      #- You need to expose any IW4X_NET_LOG_IP ports.
     environment:
       - PUID=1000
       - PGID=1000
@@ -136,14 +162,17 @@ services:
       - ./IW4MAdmin/Localization:/app/Localization
       - ./IW4MAdmin/Database:/app/Database
       - ./IW4MAdmin/Log:/app/Log
-      - ./iw5mp-1/storage/iw5/logs/games_mp.log:/app/gamelogs/iw5mp-1/storage/iw5/logs/games_mp.log:ro
-      - ./t4mp-1/storage/t4/main/games_mp.log:/app/gamelogs/t4mp-1/storage/t4/main/games_mp.log:ro
-      - ./t4sp-1/storage/t4/main/games_zm.log:/app/gamelogs/t4sp-1/storage/t4/main/games_zm.log:ro
-      - ./t5mp-1/storage/t5/main/logs/games_mp.log:/app/gamelogs/t5mp-1/storage/t5/main/logs/games_mp.log:ro
-      - ./t5sp-1/storage/t5/main/logs/games_sp.log:/app/gamelogs/t5sp-1/storage/t5/main/logs/games_sp.log:ro
-      - ./t6mp-1/storage/t6/main/logs/games_mp.log:/app/gamelogs/t6mp-1/storage/t6/main/logs/games_mp.log:ro
-      - ./t6zm-1/storage/t6/main/logs/games_zm.log:/app/gamelogs/t6zm-1/storage/t6/main/logs/games_zm.log:ro
+      - ./iw4xmp-1/gamefiles/userraw/logs/games_dom.log:/app/gamelogs/iw4xmp-1/gamefiles/userraw/logs/games_mp.log:ro
+      - ./iw5mp-1/plutonium/storage/iw5/logs/games_mp.log:/app/gamelogs/iw5mp-1/plutonium/storage/iw5/logs/games_mp.log:ro
+      - ./t4mp-1/plutonium/storage/t4/main/games_mp.log:/app/gamelogs/t4mp-1/plutonium/storage/t4/main/games_mp.log:ro
+      - ./t4sp-1/plutonium/storage/t4/main/games_zm.log:/app/gamelogs/t4sp-1/plutonium/storage/t4/main/games_zm.log:ro
+      - ./t5mp-1/plutonium/storage/t5/main/logs/games_mp.log:/app/gamelogs/t5mp-1/plutonium/storage/t5/main/logs/games_mp.log:ro
+      - ./t5sp-1/plutonium/storage/t5/main/logs/games_sp.log:/app/gamelogs/t5sp-1/plutonium/storage/t5/main/logs/games_sp.log:ro
+      - ./t6mp-1/plutonium/storage/t6/main/logs/games_mp.log:/app/gamelogs/t6mp-1/plutonium/storage/t6/main/logs/games_mp.log:ro
+      - ./t6zm-1/plutonium/storage/t6/main/logs/games_zm.log:/app/gamelogs/t6zm-1/plutonium/storage/t6/main/logs/games_zm.log:ro
     depends_on:
+      iw4xmp-1:
+        condition: service_healthy
       t6zm-1:
         condition: service_healthy
       t6mp-1:
@@ -169,8 +198,8 @@ networks:
       config:
         - subnet: 100.64.10.0/30
           gateway: 100.64.10.1
-
-  pluto-net:
+  
+  games-net:
     driver: bridge
     ipam:
       config:
