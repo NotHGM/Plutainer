@@ -40,7 +40,9 @@ RUN wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/p
 
 RUN wget https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher-x86_64-unknown-linux-gnu.tar.gz -O iw4x-updater.tar.gz && \
     tar -xzvf iw4x-updater.tar.gz && \
-    rm iw4x-updater.tar.gz
+    rm iw4x-updater.tar.gz && \
+    chmod +x iw4x-launcher
+    # Because for some reason they decided to archive it without execute permissions...
 
 # Copy all necessary scripts and the python module into the image
 COPY --chown=plutainer:plutainer entrypoint.sh plutoentry.sh iw4xentry.sh healthcheck.sh pyquake3.py .
