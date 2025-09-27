@@ -81,11 +81,11 @@ if [[ -n "${IW4X_NET_LOG_IP}" ]]; then
     CMD_ARGS+=(+set g_log_add "${IW4X_NET_LOG_IP}")
 fi
 
-CMD_ARGS+=(+map_rotate)
-
 if [[ -n "${IW4X_EXTRA_ARGS}" ]]; then
     CMD_ARGS+=(${IW4X_EXTRA_ARGS})
 fi
+
+CMD_ARGS+=(+map_rotate)
 
 # --- Step 5: Launch the iw4x Server ---
 echo "Starting ${IW4X_GAME} Server: ${IW4X_SERVER_NAME}"
