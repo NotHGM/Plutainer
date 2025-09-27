@@ -54,6 +54,9 @@ See above for the game tags to use. (eg, `t6zm`)
 | `PLUTO_MAX_CLIENTS` | **T5 Only!** The maximum number of players allowed. | |
 | `PLUTO_AUTO_UPDATE` | Set to `"false"` to prevent the container from checking for updates on start. | `true` |
 | `PLUTO_HEALTHCHECK` | Set to `"false"` to disable the health check. | `true` |
+| `PLUTO_EXTRA_ARGS` | Allows you to extend the start param. | |
+
+(eg. `- "PLUTO_EXTRA_ARGS=+set SOMETHING=1 +set SOMETHING_ELSE=FOO"`)
 
 #### IW4x Variables
 
@@ -66,6 +69,7 @@ See above for the game tags to use. (eg, `t6zm`)
 | `IW4X_AUTO_UPDATE` | Set to `"false"` to prevent the container from checking for updates on start. | `true` |
 | `IW4X_HEALTHCHECK` | Set to `"false"` to disable the health check. | `true` |
 | `IW4X_NET_LOG_IP` | The IP address and port for remote netlogging. | |
+| `IW4X_EXTRA_ARGS` | Allows you to extend the start param. | |
 
 ***
 
