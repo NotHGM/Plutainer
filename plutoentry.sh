@@ -132,14 +132,14 @@ if [[ -n "${PLUTO_MAX_CLIENTS}" ]]; then
     CMD_ARGS+=(+set sv_maxclients "${PLUTO_MAX_CLIENTS}")
 fi
 
+if [[ -n "${PLUTO_EXTRA_ARGS}" ]]; then
+    CMD_ARGS+=(${PLUTO_EXTRA_ARGS})
+fi
+
 if [[ "${BASE_GAME}" == "iw5" ]]; then
     CMD_ARGS+=(+start_map_rotate)
 else
     CMD_ARGS+=(+map_rotate)
-fi
-
-if [[ -n "${PLUTO_EXTRA_ARGS}" ]]; then
-    CMD_ARGS+=(${PLUTO_EXTRA_ARGS})
 fi
 
 # --- Step 5: Launch the Plutonium Server ---
