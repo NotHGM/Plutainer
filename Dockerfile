@@ -20,12 +20,12 @@ RUN apt-get install -y --no-install-recommends \
       apt-transport-https && \
     rm -rf /var/lib/apt/lists/*
 
-# Add WineHQ apt key and repository using the sequence you provided,
-# then install winehq-stable (no strict pin to 9.0)
+# Add WineHQ apt key and repository (explicitly add bookworm repo entry),
+# then install winehq-stable (no strict pin)
 RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key -O /tmp/winehq.key && \
     apt-key add /tmp/winehq.key && \
     rm /tmp/winehq.key && \
-    apt-add-repository https://dl.winehq.org/wine-builds/debian/ && \
+    echo "deb https://dl.winehq.org/wine-builds/debian/ bookworm main" > /etc/apt/sources.list.d/winehq.list && \
     apt-get update && \
     apt-get install -y --install-recommends winehq-stable && \
     rm -rf /var/lib/apt/lists/*
