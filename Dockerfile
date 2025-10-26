@@ -4,35 +4,30 @@ FROM debian:12
 # Prevent interactive prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Add i386 architecture and update package lists
+# Ensure i386 support and initial update
 RUN dpkg --add-architecture i386 && \
     apt-get update
 
-# Install basic dependencies required to set up the WineHQ repository and for the healthcheck
+# Install prerequisites for adding the Wine repo and for the healthcheck
 RUN apt-get install -y --no-install-recommends \
-    wget \
-    gpg \
-    ca-certificates \
-    tar \
-    python3 \
-    apt-transport-https \
-    gnupg && \
+      wget \
+      gnupg2 \
+      software-properties-common \
+      lsb-release \
+      ca-certificates \
+      tar \
+      python3 \
+      apt-transport-https && \
     rm -rf /var/lib/apt/lists/*
 
-# Add WineHQ repository key
-RUN mkdir -pm755 /etc/apt/keyrings && \
-    wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key
-
-# Add WineHQ repository for Debian 12 (bookworm)
-RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
-
-# Update package lists, install Wine pinned to 9.0 and fail the build if wine-9.0 is not available.
-# We also hold the package to avoid upgrades inside the image later.
-RUN apt-get update && \
-    apt-get install -y --install-recommends winehq-stable=9.0* || (echo "wine-9.0 is not available from configured repos; aborting build" >&2; exit 1) && \
-    apt-mark hold winehq-stable && \
-    # Verify installed version is exactly wine-9.0 (fail if not)
-    (wine --version | grep -q '^wine-9\.0' || (echo "installed wine is not 9.0; aborting" >&2; exit 1)) && \
+# Add WineHQ apt key and repository using the sequence you provided,
+# then install winehq-stable (no strict pin to 9.0)
+RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key -O /tmp/winehq.key && \
+    apt-key add /tmp/winehq.key && \
+    rm /tmp/winehq.key && \
+    apt-add-repository https://dl.winehq.org/wine-builds/debian/ && \
+    apt-get update && \
+    apt-get install -y --install-recommends winehq-stable && \
     rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user for running the server
